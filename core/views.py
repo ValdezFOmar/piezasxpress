@@ -9,6 +9,11 @@ def home(request: HttpRequest) -> HttpResponse:
     return render(request, 'core/home.html')
 
 
+@login_required
+def search(request: HttpRequest) -> HttpResponse:
+    return render(request, 'core/search.html')
+
+
 def logout_user(request: HttpRequest) -> HttpResponse:
     logout(request)
     return redirect('user-login')

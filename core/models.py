@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils import timezone
@@ -19,6 +17,11 @@ def validate_positive(value: int):
         raise ValidationError(f'Expected a positive value, got {value!r}')
 
 
+def validate_not_empty(value: str):
+    if value == '':
+        raise ValidationError('Value must not be the empty string')
+
+
 class Motor(models.Model):
     type = models.CharField(max_length=4)
 
@@ -30,7 +33,7 @@ class Traction(models.Model):
 class Part(models.Model):
     name = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=7, decimal_places=2, validators=[validate_positive])
-    # location = models.????
+    location = models.CharField(max_length=10, validators=[validate_not_empty])
     quantity = models.IntegerField(validators=[validate_positive])
 
     def __str__(self) -> str:
