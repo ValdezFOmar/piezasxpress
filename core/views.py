@@ -1,4 +1,3 @@
-from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, HttpResponse
@@ -12,23 +11,28 @@ def home(request: HttpRequest) -> HttpResponse:
 
 def logout_user(request: HttpRequest) -> HttpResponse:
     logout(request)
-    messages.info(request, 'Logout successful')
     return redirect('user-login')
 
 
 def login_user(request: HttpRequest) -> HttpResponse:
     if request.method != 'POST':
-        context = {'redirect_page': request.GET.get('next', '/')}
+        context = {
+            'redirect_page': request.GET.get('next') or '/',
+            'invalid_credentials': False,
+        }
         return render(request, 'core/login.html', context)
 
+    redirect_page = request.POST.get('redirect_page') or '/'
     username = request.POST['username']
     password = request.POST['password']
     user = authenticate(request, username=username, password=password)
 
     if user is None:
-        messages.error(request, 'Invalid credentials, try again')
-        return redirect('user-login')
+        context = {
+            'redirect_page': redirect_page,
+            'invalid_credentials': True,
+        }
+        return render(request, 'core/login.html', context)
 
     login(request, user)
-    messages.success(request, 'Login successful!')
-    return redirect(request.POST.get('redirect_page') or '/')
+    return redirect(redirect_page)
