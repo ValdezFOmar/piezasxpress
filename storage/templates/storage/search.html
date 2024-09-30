@@ -1,0 +1,12 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+<ul>
+  <li><button type="button">Buscar Autoparte</button></li>
+  <li><button type="button">Buscar Ubicación</button></li>
+  <li><button type="button">Buscar stock</button></li>
+</ul>
+<div id="search-panel-container">
+  {% include "storage/search-autopart.html" %}
+</div>
+{% endblock content %}

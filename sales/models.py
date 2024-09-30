@@ -24,7 +24,7 @@ class QuotationPart(models.Model):
 
     class Meta:
         constraints = [
-            models.UniqueConstraint(fields=['quotation', 'part'], name='unique_quotation')
+            models.UniqueConstraint(fields=['quotation', 'part'], name='unique_quotation'),
         ]
 
 
