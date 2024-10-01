@@ -1,0 +1,106 @@
+:root {
+  --input-left-padding: 10px;
+  --input-left-padding-icon: 45px;
+  --input-right-padding: 40px;
+  --input-icon-width: 24px;
+}
+
+section.login .logo {
+  gap: 10px;
+  align-items: center;
+}
+
+section.login .logo svg {
+  max-width: 150px;
+  fill: var(--color-contrast);
+  filter: drop-shadow(2px 3px 5px var(--color-surface-primary-shadow));
+}
+
+section.login .logo h1 {
+  text-align: center;
+  max-width: max-content;
+  font-size: var(--font-size-medium-small);
+  letter-spacing: 0.05em;
+  text-shadow: 2px 3px 5px var(--color-surface-primary-shadow);
+}
+
+section.login .logo span {
+  color: var(--color-primary);
+}
+
+section.login {
+  user-select: none;
+}
+
+section.login .container {
+  gap: 40px;
+  margin: 15px auto;
+  padding: 40px 20px;
+  min-width: min-content;
+  width: 90%;
+  height: max-content;
+  border-radius: var(--border-radius-medium);
+  background: linear-gradient(var(--color-surface-primary-select), var(--color-surface-primary));
+  box-shadow: 0 5px 10px var(--color-surface-secondary-shadow);
+}
+
+section.login .input-control {
+  gap: 50px;
+}
+
+section.login .user-data {
+  gap: 20px;
+}
+
+section.login .user-data .field {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+section.login .user-data .field::before {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 30px;
+  transform: translateX(calc(var(--input-left-padding-icon) - (var(--input-icon-width) / 2.5)));
+  background-color: var(--color-contrast-select);
+  visibility: hidden;
+}
+
+section.login .user-data .data {
+  gap: 5px;
+}
+
+section.login .user-data label {
+  font-size: var(--font-size-extra-small);
+  letter-spacing: 0.1em;
+}
+
+section.login .user-data input {
+  width: 100%;
+  padding-left: var(--input-left-padding);
+}
+
+section.login .user-data input.has-visible-toggler {
+  padding-right: var(--input-right-padding);
+}
+
+section.login .input-icon {
+  position: absolute;
+  width: var(--input-icon-width);
+  height: var(--input-icon-width);
+  fill: var(--color-surface-primary);
+}
+
+section.login .field .icon {
+  transform: translateX(5px);
+  visibility: hidden;
+}
+
+section.login #pass-visible-toggler {
+  position: absolute;
+  right: 30px;
+  height: 50%;
+  cursor: pointer;
+}

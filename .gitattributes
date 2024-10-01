@@ -1,0 +1,5 @@
+* text=auto eol=lf
+
+core/migrations/* linguist-generated
+sales/migrations/* linguist-generated
+storage/migrations/* linguist-generated
