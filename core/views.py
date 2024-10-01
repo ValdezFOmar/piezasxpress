@@ -28,8 +28,8 @@ def login_user(request: HttpRequest) -> HttpResponse:
         return render(request, 'core/login.html', context)
 
     redirect_page = request.POST.get('redirect_page') or '/'
-    username = request.POST['username']
-    password = request.POST['password']
+    username = request.POST.get('username')
+    password = request.POST.get('password')
     user = authenticate(request, username=username, password=password)
 
     if user is None:
