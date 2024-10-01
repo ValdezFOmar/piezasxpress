@@ -1,5 +1,4 @@
 @media (min-width: 270px) {
-
   section.menu .option .icon,
   section.menu .option::before {
     visibility: visible;
@@ -13,7 +12,6 @@
 
 
 @media (min-width: 300px) {
-
   section.login .user-data .field::before,
   section.login .field .icon {
     visibility: visible;

@@ -1,20 +1,51 @@
 {% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}
+PiezasXpress | Menú
+{% endblock title %}
+
+{% block head %}
+<meta name="title" content="PiezasXpress | Menú">
+<meta name="description" content="Menú de opciones para el manejo del inventario y busqueda">
+
+<link rel="stylesheet" href="{% static 'core/styles/home.css' %}">
+{% endblock head %}
 
 {% block content %}
-<main>
-  <h1>PiezasXpress</h1>
-  <p>Menu...</p>
-  <div>
-    <a href="{% url 'storage-index' %}">Inventario</a>
-  </div>
-  <div>
-    <a href="{% url 'search' %}">Busqueda</a>
-  </div>
-  <div>
-    <a href="{% url 'sales-index' %}">Ordenes</a>
-  </div>
-  <div>
-    <a href="{% url 'user-logout' %}">Logout</a>
-  </div>
-</main>
+<section class="menu flex-column">
+  <nav class="options flex-column">
+    <a href="{% url 'storage-index' %}" class="button-anchor option-anchor">
+      <div class="option">
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+          <path
+            d="M620-163 450-333l56-56 114 114 226-226 56 56-282 282Zm220-397h-80v-200h-80v120H280v-120h-80v560h240v80H200q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h167q11-35 43-57.5t70-22.5q40 0 71.5 22.5T594-840h166q33 0 56.5 23.5T840-760v200ZM480-760q17 0 28.5-11.5T520-800q0-17-11.5-28.5T480-840q-17 0-28.5 11.5T440-800q0 17 11.5 28.5T480-760Z" />
+        </svg>
+        <h3>Inventario</h3>
+      </div>
+    </a>
+    <a href="{% url 'search' %}" class="button-anchor option-anchor">
+      <div class="option">
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+          <path
+            d="M80-200v-80h400v80H80Zm0-200v-80h200v80H80Zm0-200v-80h200v80H80Zm744 400L670-354q-24 17-52.5 25.5T560-320q-83 0-141.5-58.5T360-520q0-83 58.5-141.5T560-720q83 0 141.5 58.5T760-520q0 29-8.5 57.5T726-410l154 154-56 56ZM560-400q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Z" />
+        </svg>
+        <h3>Búsqueda</h3>
+      </div>
+    </a>
+    <a href="{% url 'sales-index' %}" class="button-anchor option-anchor">
+      <div class="option">
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+          <path
+            d="M320-240h320v-80H320v80Zm0-160h320v-80H320v80ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z" />
+        </svg>
+        <h3>Órdenes</h3>
+      </div>
+    </a>
+  </nav>
+  <a href="{% url 'user-logout' %}"
+    class="button-anchor margin-horizontal-center button-base button-outline button-padding-medium">
+    Cerrar Sesión
+  </a>
+</section>
 {% endblock content %}

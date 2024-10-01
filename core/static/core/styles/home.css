@@ -1,0 +1,91 @@
+:root {
+  --option-icon-width: 32px;
+  --option-padding-block: 15px;
+}
+
+
+
+section.menu {
+  gap: 40px;
+  padding: 30px 0;
+  margin-inline: 10px;
+  min-width: min-content;
+  height: max-content;
+}
+
+
+
+section.menu .options {
+  gap: 15px;
+}
+
+section.menu .option-anchor {
+  width: 100%;
+}
+
+
+
+section.menu .option {
+  padding: var(--option-padding-block) 30px;
+  width: 100%;
+  border: 2px solid transparent;
+  border-radius: var(--border-radius-medium);
+  background-color: var(--color-surface-primary);
+  box-shadow: 0 5px 10px var(--color-surface-secondary-shadow);
+  transition: background-color 0.1s;
+}
+
+section.menu .option::before {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 45px;
+  transform: translate(30px, calc((var(--option-padding-block) / -1.5) - 2px));
+  background-color: var(--color-surface-primary-select);
+  visibility: hidden;
+}
+
+section.menu .option h3 {
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+
+section.menu .option .icon {
+  position: absolute;
+  visibility: hidden;
+  transform: translate(-15px, -3px);
+  width: var(--option-icon-width);
+  height: var(--option-icon-width);
+  fill: var(--color-contrast);
+}
+
+
+
+section.menu .option:hover {
+  border: 2px solid var(--color-contrast);
+  background: var(--color-surface-primary-select);
+}
+
+section.menu .option:hover::before {
+  background-color: var(--color-contrast);
+}
+
+
+
+section.menu .option:active {
+  background: var(--color-contrast);
+}
+
+section.menu .option:active h3 {
+  color: var(--color-surface-primary);
+  text-shadow: 1px 0 0 var(--color-surface-primary);
+}
+
+section.menu .option:active .icon {
+  fill: var(--color-surface-primary);
+}
+
+section.menu .option:active::before {
+  background-color: var(--color-surface-primary);
+}

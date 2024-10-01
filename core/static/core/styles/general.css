@@ -139,9 +139,6 @@ button {
   border-radius: var(--border-radius-medium);
   box-shadow: 2px 3px 5px var(--color-surface-primary-shadow);
   transition: all 0.1s;
-}
-
-.button-base p {
   font-size: var(--font-size-small);
 }
 
@@ -178,9 +175,6 @@ button {
   font-weight: 500;
   letter-spacing: 0.07em;
   background-color: transparent;
-}
-
-.button-outline p {
   color: var(--color-primary);
   user-select: none;
 }
@@ -191,9 +185,6 @@ button {
 
 .button-outline:hover {
   background-color: var(--color-primary);
-}
-
-.button-outline:hover p {
   color: var(--color-surface-primary);
   text-shadow: 1px 0 0 var(--color-surface-primary);
 }
@@ -218,7 +209,7 @@ button {
   background-color: var(--color-primary);
 }
 
-.button-fill p {
+.button-fill {
   color: var(--color-surface-primary);
   text-shadow: 1px 0 0 var(--color-surface-primary);
   user-select: none;
@@ -232,7 +223,7 @@ button {
   background-color: transparent;
 }
 
-.button-fill:hover p {
+.button-fill:hover {
   color: var(--color-primary);
   text-shadow: none;
 }
@@ -247,7 +238,7 @@ button {
   background-color: var(--color-contrast);
 }
 
-.button-fill:active p {
+.button-fill:active {
   color: var(--color-surface-primary);
   text-shadow: 1px 0 0 var(--color-surface-primary);
 }

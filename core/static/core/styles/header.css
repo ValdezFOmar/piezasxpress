@@ -1,0 +1,36 @@
+header .container {
+  width: 100%;
+  min-width: 200px;
+  padding: 20px 0;
+  border-bottom-left-radius: var(--border-radius-medium);
+  border-bottom-right-radius: var(--border-radius-medium);
+  background: linear-gradient(var(--color-surface-primary-select), var(--color-surface-primary));
+}
+
+
+
+header .logo {
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+header .logo svg {
+  width: 75px;
+  height: 100%;
+  filter: drop-shadow(2px 3px 5px var(--color-surface-primary-shadow));
+}
+
+header .logo h1 {
+  font-size: var(--font-size-medium);
+  letter-spacing: 0.05em;
+  text-shadow: 2px 3px 5px var(--color-surface-primary-shadow);
+  display: none;
+  user-select: none;
+}
+
+header .logo span {
+  color: var(--color-primary);
+}
