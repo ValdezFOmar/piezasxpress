@@ -10,8 +10,7 @@ def index(request: HttpRequest) -> HttpResponse:
 
 @login_required
 def add(request: HttpRequest) -> HttpResponse:
-    if request.method != 'POST':
-        return render(request, 'storage/add.html')
+    return render(request, 'storage/add.html')
 
 
 @login_required

@@ -1,0 +1,45 @@
+section.inventory {
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin: 20px auto;
+  width: 90%;
+  min-width: min-content;
+  max-width: 1000px;
+}
+
+section.inventory .container {
+  gap: 20px;
+}
+
+
+
+section.inventory .option {
+  gap: 20px;
+  width: 100%;
+  padding-block: 30px;
+  border-radius: var(--border-radius-medium);
+  background: linear-gradient(var(--color-surface-primary-select), var(--color-surface-primary));
+  box-shadow: 0 5px 10px var(--color-surface-secondary-shadow);
+}
+
+
+
+section.inventory .header {
+  align-items: center;
+  gap: 10px;
+  margin-inline: auto;
+}
+
+section.inventory .header svg {
+  width: 30px;
+}
+
+section.inventory .description {
+  width: 90%;
+  margin-inline: auto;
+  padding: 20px 10px;
+  border-radius: var(--border-radius-medium);
+  text-align: center;
+  background: linear-gradient(var(--color-surface-secondary), var(--color-surface-secondary-select));
+}

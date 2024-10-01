@@ -1,14 +1,62 @@
 {% extends "core/base.html" %}
+{% load static %}
 
 {% block title %}
-Inventario
+PiezasXpress | Inventario
 {% endblock title %}
 
+{% block head %}
+<meta name="title" content="PiezasXpress | Inventorio" />
+<meta name="description" content="Menú para añadir o buscar" />
+<link rel="stylesheet" href="{% static 'storage/styles/index.css' %}" />
+{% endblock head %}
+
 {% block content %}
-<div>
-  <a href="{% url 'storage-add' %}">Añadir</a>
-</div>
-<div>
-  <a href="{% url 'storage-search' %}">Buscar</a>
-</div>
+{% include "core/components/page-title.html" with title="Inventario" %}
+
+<section class="inventory flex-column">
+  <div class="margin-horizontal-left">
+    <a href="{% url 'home' %}" class="button-anchor button-base button-outline button-padding-medium button-icon-left">
+      <svg class="flipped" xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 -960 960 960">
+        <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z" />
+      </svg>
+      Regresar
+    </a>
+  </div>
+  <div class="container flex-column">
+    <div class="option flex-column">
+      <div class="header flex-row">
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+          <path
+            d="M640-121v-120H520v-80h120v-120h80v120h120v80H720v120h-80ZM120-240v-80h80v80h-80Zm160 0v-80h163q-3 21-2.5 40t3.5 40H280ZM120-400v-80h80v80h-80Zm160 0v-80h266q-23 16-41.5 36T472-400H280ZM120-560v-80h80v80h-80Zm160 0v-80h480v80H280ZM120-720v-80h80v80h-80Zm160 0v-80h480v80H280Z" />
+        </svg>
+        <h3>Añadir</h3>
+      </div>
+      <p class="description">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequatur ea laborum iure, tempore ipsam delectus!
+      </p>
+      <a href="{% url 'storage-add' %}"
+        class="button-anchor margin-horizontal-center button-base button-outline button-padding-medium">
+        Añadir
+      </a>
+    </div>
+    <div class="option flex-column">
+      <div class="header flex-row">
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+          <path
+            d="M80-200v-80h400v80H80Zm0-200v-80h200v80H80Zm0-200v-80h200v80H80Zm744 400L670-354q-24 17-52.5 25.5T560-320q-83 0-141.5-58.5T360-520q0-83 58.5-141.5T560-720q83 0 141.5 58.5T760-520q0 29-8.5 57.5T726-410l154 154-56 56ZM560-400q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Z" />
+        </svg>
+        <h3>Buscar</h3>
+      </div>
+      <p class="description">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequatur ea laborum iure, tempore ipsam delectus!
+      </p>
+      <a href="{% url 'storage-search' %}"
+        class="button-anchor margin-horizontal-center button-base button-outline button-padding-medium">
+        Buscar
+      </a>
+    </div>
+  </div>
+</section>
+
 {% endblock content %}
