@@ -1,12 +1,59 @@
 {% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}
+PiezasXpress | Inventario - Buscar
+{% endblock title %}
+
+{% block head %}
+<meta name="title" content="PiezasXpress | Iventario - Buscar" />
+<meta name="description" content="Buscar inventario por medio de datos identificadores" />
+
+<link rel="stylesheet" href="{% static 'storage/styles/search.css' %}" />
+
+<script src="https://unpkg.com/htmx.org@2.0.2"
+  integrity="sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ" crossorigin="anonymous"></script>
+{% endblock head %}
 
 {% block content %}
-<ul>
-  <li><button type="button">Buscar Autoparte</button></li>
-  <li><button type="button">Buscar Ubicación</button></li>
-  <li><button type="button">Buscar stock</button></li>
-</ul>
-<div id="search-panel-container">
-  {% include "storage/search-autopart.html" %}
-</div>
+{% include "core/components/page-title.html" with title="Buscar" %}
+
+<section class="has-sidebar flex-column">
+  <aside class="sidebar-search flex-row">
+    <a hx-get="{% url 'storage-search-autopart' %}" hx-trigger="click" hx-target="#search-form-container"
+      hx-swap="innerHTML" class="tab-anchor">
+      <div class="tab">
+        <p>Autoparte</p>
+      </div>
+    </a>
+    <a hx-get="{% url 'storage-search-location' %}" hx-trigger="click" hx-target="#search-form-container"
+      hx-swap="innerHTML" class="tab-anchor">
+      <div class="tab">
+        <p>Ubicación</p>
+      </div>
+    </a>
+    <a hx-get="{% url 'storage-search-stock' %}" hx-trigger="click" hx-target="#search-form-container"
+      hx-swap="innerHTML" class="tab-anchor">
+      <div class="tab">
+        <p>Stock</p>
+      </div>
+    </a>
+  </aside>
+
+  <section id="search-form-container" class="buscar flex-column">
+    {% include "storage/search-autopart.html" %}
+  </section>
+
+  <section class="buscar flex-column">
+    <div class="nav-buttons flex-row margin-horizontal-right">
+      <a href="{% url 'storage-index' %}"
+        class="button-anchor button-base button-outline button-padding-medium button-icon-left">
+        <svg class="flipped" xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 -960 960 960">
+          <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z" />
+        </svg>
+        Regresar
+      </a>
+    </div>
+  </section>
+</section>
 {% endblock content %}

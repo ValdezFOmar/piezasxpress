@@ -1,0 +1,12 @@
+section.resultado {
+  gap: 70px;
+  margin: 20px auto;
+  width: 90%;
+  min-width: 200px;
+}
+
+section.resultado .scroll-table {
+  overflow: auto;
+  height: 500px;
+  width: 100%;
+}

@@ -1,0 +1,61 @@
+aside.sidebar-search {
+  justify-content: space-evenly;
+  width: 100%;
+  border-bottom: 1px solid var(--color-contrast);
+  border-top-right-radius: var(--border-radius-medium);
+  margin-block: 20px;
+  background: linear-gradient(var(--color-surface-secondary), var(--color-surface-secondary-select));
+}
+
+aside .tab-anchor {
+  width: 100%;
+}
+
+aside.sidebar-search .tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 5rem;
+  padding-inline: 10px;
+  border-top-right-radius: var(--border-radius-medium);
+  border-top-left-radius: var(--border-radius-medium);
+  transition: background-color 0.1s;
+}
+
+aside.sidebar-search .tab:hover:not(.selected) {
+  border: 2px solid var(--color-contrast);
+  background: var(--color-surface-primary-select);
+}
+
+aside.sidebar-search .tab:not(:last-child) {
+  border-right: 1px solid var(--color-contrast);
+}
+
+aside.sidebar-search .tab.selected {
+  background-color: var(--color-surface-primary);
+}
+
+aside.sidebar-search .tab p {
+  letter-spacing: 0.1rem;
+}
+
+
+
+section.buscar {
+  gap: 70px;
+  margin: 20px auto;
+  width: 90%;
+  min-width: 200px;
+}
+
+section.buscar .user-data {
+  gap: 15px;
+  align-items: center;
+  width: 100%;
+}
+
+section.buscar .user-data .data {
+  gap: 5px;
+  width: 100%;
+  max-width: 400px;
+}
