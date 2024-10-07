@@ -9,7 +9,7 @@ def validate_range(value: int, min: int, max: int):
 
 
 def validate_car_year(value: int):
-    validate_range(value, 1950, timezone.now().year)
+    validate_range(value, 1900, timezone.now().year)
 
 
 def validate_positive(value: int):
@@ -22,19 +22,13 @@ def validate_not_empty(value: str):
         raise ValidationError('Value must not be the empty string')
 
 
-class Motor(models.Model):
-    type = models.CharField(max_length=4)
-
-
-class Traction(models.Model):
-    type = models.CharField(max_length=3)
-
-
 class Part(models.Model):
-    name = models.CharField(max_length=100)
-    price = models.DecimalField(max_digits=7, decimal_places=2, validators=[validate_positive])
     location = models.CharField(max_length=10, validators=[validate_not_empty])
-    quantity = models.IntegerField(validators=[validate_positive])
+    name = models.CharField(max_length=100)
+    # Given ID when registering the part, not the actual database ID
+    part_id = models.IntegerField(unique=True, validators=[validate_positive])
+    # price = models.DecimalField(max_digits=7, decimal_places=2, validators=[validate_positive])
+    quantity = models.IntegerField(default=0, validators=[validate_positive])
 
     def __str__(self) -> str:
         return self.name
@@ -42,15 +36,26 @@ class Part(models.Model):
 
 class Car(models.Model):
     class Transmission(models.TextChoices):
-        AUTOMATIC = 'a'
-        MANUAL = 'm'
+        AUTOMATIC = 'A'
+        MANUAL = 'M'
 
+    class Traction(models.TextChoices):
+        AWD = 'AWD', 'AWD'
+        FWD = 'FWD', 'FWD'
+        RWD = 'RWD', 'RWD'
+        _4X4 = '4X4', '4X4'
+
+    # Type hinting
+    id: models.BigAutoField
+
+    miles = models.IntegerField(validators=[validate_positive])
     model = models.CharField(max_length=50)
-    year = models.IntegerField(validators=[validate_car_year])
-    transmisson = models.CharField(max_length=1, choices=Transmission.choices)
-    motor = models.ForeignKey(Motor, on_delete=models.CASCADE)
-    traction = models.ForeignKey(Traction, on_delete=models.CASCADE)
+    motor = models.CharField(max_length=50)
     parts = models.ManyToManyField(Part)
+    stock = models.CharField(max_length=10, unique=True, validators=[validate_not_empty])
+    traction = models.CharField(max_length=3, choices=Traction.choices)
+    transmisson = models.CharField(max_length=1, choices=Transmission.choices)
+    year = models.IntegerField(validators=[validate_car_year])
 
     def __str__(self) -> str:
         return f'{self.model} ({self.year})'

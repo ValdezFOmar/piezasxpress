@@ -5,8 +5,10 @@ from .views import simple_view
 
 urlpatterns = [
     path('', simple_view('storage/index.html'), name='storage-index'),
-    path('add', simple_view('storage/add.html'), name='storage-add'),
-    path('add-part', simple_view('storage/add-part.html'), name='storage-add-part'),
+    path('car/add', views.add_car, name='storage-add'),
+    path('car/<int:car_id>/parts', views.add_car_parts, name='storage-add-part'),
+    # Use to populate the parts catalog with json encoded data
+    path('part/register', views.register_part, name='storage-register-part'),
     path('search', simple_view('storage/search.html'), name='storage-search'),
     path('search/autopart', simple_view('storage/search-autopart.html'), name='storage-search-autopart'),
     path('search/autopart/results', views.search_autopart_results, name='storage-search-autopart-results'),
