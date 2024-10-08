@@ -23,12 +23,9 @@ def validate_not_empty(value: str):
 
 
 class Part(models.Model):
-    location = models.CharField(max_length=10, validators=[validate_not_empty])
-    name = models.CharField(max_length=100)
-    # Given ID when registering the part, not the actual database ID
+    # ID given when registering the part, not the actual database ID
     part_id = models.IntegerField(unique=True, validators=[validate_positive])
-    # price = models.DecimalField(max_digits=7, decimal_places=2, validators=[validate_positive])
-    quantity = models.IntegerField(default=0, validators=[validate_positive])
+    name = models.CharField(max_length=100)
 
     def __str__(self) -> str:
         return self.name
@@ -51,7 +48,7 @@ class Car(models.Model):
     miles = models.IntegerField(validators=[validate_positive])
     model = models.CharField(max_length=50)
     motor = models.CharField(max_length=50)
-    parts = models.ManyToManyField(Part)
+    parts = models.ManyToManyField(Part, through='CarPart')
     stock = models.CharField(max_length=10, unique=True, validators=[validate_not_empty])
     traction = models.CharField(max_length=3, choices=Traction.choices)
     transmisson = models.CharField(max_length=1, choices=Transmission.choices)
@@ -59,3 +56,14 @@ class Car(models.Model):
 
     def __str__(self) -> str:
         return f'{self.model} ({self.year})'
+
+
+class CarPart(models.Model):
+    car = models.ForeignKey(Car, on_delete=models.CASCADE)
+    part = models.ForeignKey(Part, on_delete=models.CASCADE)
+    location = models.CharField(max_length=10, validators=[validate_not_empty])
+    price = models.DecimalField(max_digits=7, decimal_places=2, validators=[validate_positive])
+    quantity = models.IntegerField(default=0, validators=[validate_positive])
+
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=['car', 'part'], name='unique_car_part')]

@@ -3,6 +3,7 @@ from collections.abc import Callable
 from typing import NamedTuple
 from http import HTTPStatus
 
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, HttpResponse, HttpResponseBadRequest
 from django.shortcuts import get_object_or_404, redirect, render
@@ -15,7 +16,6 @@ from .forms import CarModelForm
 class PartDefinition(NamedTuple):
     id: int
     name: str
-    location: str
 
 
 def simple_view(template_name: str) -> Callable[[HttpRequest], HttpResponse]:
@@ -34,18 +34,22 @@ def add_car(request: HttpRequest) -> HttpResponse:
     return render(request, 'storage/add.html', {'form': form})
 
 
+
+@login_required
 def add_car_parts(request: HttpRequest, car_id: int) -> HttpResponse:
     car = get_object_or_404(Car, id=car_id)
 
     if request.method == 'POST':
         # TODO: Add code to assosiate parts with the car
-        pass
-    else:
-        pass
+        return redirect('storage-index')
 
-    return render(request, 'storage/add-part.html', {'car': car})
+    parts = Part.objects.all()
+    context = {'car': car, 'parts': parts}
+
+    return render(request, 'storage/add-part.html', context)
 
 
+@csrf_exempt
 def register_part(request: HttpRequest) -> HttpResponse:
     if request.method != 'POST':
         return HttpResponseBadRequest()
@@ -55,7 +59,7 @@ def register_part(request: HttpRequest) -> HttpResponse:
     )
 
     Part.objects.bulk_create(
-        Part(part_id=part.id, name=part.name, location=part.location) for part in parts
+        Part(part_id=part.id, name=part.name) for part in parts
     )
 
     return HttpResponse(status=HTTPStatus.NO_CONTENT)
