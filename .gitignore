@@ -3,6 +3,7 @@
 static-files/
 # ignore for now, for fast development
 migrations/
+*.zip
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -1,7 +1,13 @@
+from collections.abc import Callable
+
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
+
+
+def simple_view(template_name: str) -> Callable[[HttpRequest], HttpResponse]:
+    return login_required(lambda request: render(request, template_name))
 
 
 @login_required
@@ -10,8 +16,9 @@ def home(request: HttpRequest) -> HttpResponse:
 
 
 @login_required
-def search(request: HttpRequest) -> HttpResponse:
-    return render(request, 'core/search.html')
+def search(_request: HttpRequest) -> HttpResponse:
+    return redirect('storage-search')
+    # return render(request, 'core/search.html')
 
 
 def logout_user(request: HttpRequest) -> HttpResponse:

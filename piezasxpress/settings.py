@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'core.apps.CoreConfig',
-    'sales.apps.SalesConfig',
+    'orders.apps.OrdersConfig',
     'storage.apps.StorageConfig',
     'django.contrib.admin',
     'django.contrib.auth',

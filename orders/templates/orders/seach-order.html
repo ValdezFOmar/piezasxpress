@@ -1,0 +1,57 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}
+PiezasXpress | Búsqueda de órdenes
+{% endblock title %}
+
+{% block head %}
+<meta name="title" content="PiezasXpress | Búsqueda de órdenes" />
+<meta name="description" content="Búsqueda de cotizaciones o facturas" />
+<link rel="stylesheet" href="{% static 'orders/styles/search-order.css' %}" />
+
+<script src="{% static 'orders/scripts/order-type-select.js' %}" type="module"></script>
+{% endblock head %}
+
+{% block content %}
+{% include "core/components/page-title.html" with title="Búsqueda de órdenes" %}
+
+<article>
+  <section class="ordenes flex-column">
+    <div class="user-data flex-column">
+      <div class="data flex-column">
+        <label for="data-orden">Tipo de orden</label>
+        <select name="data-orden" id="data-orden">
+          <option value="none" selected disabled hidden>-- Seleccione una opción --</option>
+          <option value="cotizacion">Cotización</option>
+          <option value="factura">Factura</option>
+        </select>
+      </div>
+      <div class="data flex-column">
+        <label id="data-id-label" for="data-id">ID de orden</label>
+        <input name="data-id" id="data-id" type="text" spellcheck="false">
+      </div>
+      <div class="data flex-column">
+        <label for="data-cliente">Nombre de cliente</label>
+        <input name="data-cliente" id="data-cliente" type="text" spellcheck="false">
+      </div>
+    </div>
+    <div class="nav-buttons flex-row margin-horizontal-right">
+      <a class="button-anchor button-base button-outline button-padding-medium button-icon-left"
+        href="{% url 'home' %}">
+        <svg class="flipped" xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 -960 960 960">
+          <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z" />
+        </svg>
+        Regresar
+      </a>
+      <a class="button-anchor button-base button-fill button-padding-medium button-icon-left" href="">
+        <svg class="icon" width="24px" heigth="24px" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+          <path
+            d="M80-200v-80h400v80H80Zm0-200v-80h200v80H80Zm0-200v-80h200v80H80Zm744 400L670-354q-24 17-52.5 25.5T560-320q-83 0-141.5-58.5T360-520q0-83 58.5-141.5T560-720q83 0 141.5 58.5T760-520q0 29-8.5 57.5T726-410l154 154-56 56ZM560-400q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Z" />
+        </svg>
+        Buscar
+      </a>
+    </div>
+  </section>
+</article>
+{% endblock content %}

@@ -1,5 +1,4 @@
 import json
-from collections.abc import Callable
 from typing import NamedTuple
 from http import HTTPStatus
 
@@ -16,10 +15,6 @@ from .forms import CarModelForm
 class PartDefinition(NamedTuple):
     id: int
     name: str
-
-
-def simple_view(template_name: str) -> Callable[[HttpRequest], HttpResponse]:
-    return login_required(lambda request: render(request, template_name))
 
 
 @login_required
