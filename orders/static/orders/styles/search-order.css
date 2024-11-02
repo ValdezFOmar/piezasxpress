@@ -1,0 +1,18 @@
+section.ordenes {
+  gap: 70px;
+  margin: 20px auto;
+  width: 90%;
+  min-width: 200px;
+}
+
+section.ordenes .user-data {
+  gap: 15px;
+  align-items: center;
+  width: 100%;
+}
+
+section.ordenes .user-data .data {
+  gap: 5px;
+  width: 100%;
+  max-width: 400px;
+}
