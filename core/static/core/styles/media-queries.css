@@ -1,171 +1,176 @@
 @media (min-width: 270px) {
-  section.menu .option .icon,
-  section.menu .option::before {
-    visibility: visible;
-  }
-
-  section.menu .option h3 {
-    text-align: right;
-  }
+    section.menu .option .icon,
+    section.menu .option::before {
+        visibility: visible;
+    }
+    section.menu .option h3 {
+        text-align: right;
+    }
 }
 
 
 
 @media (min-width: 300px) {
-  section.login .user-data .field::before,
-  section.login .field .icon {
-    visibility: visible;
-  }
-
-  section.login .user-data input {
-    padding-left: var(--input-left-padding-icon);
-  }
+    section.login .user-data .field::before,
+    section.login .field .icon {
+        visibility: visible;
+    }
+    section.login .user-data input {
+        padding-left: var(--input-left-padding-icon);
+    }
 }
 
 
 
 @media (min-width: 370px) {
-  header .logo h1 {
-    display: inline;
-  }
-
-  section.menu {
-    margin-block: 50px;
-  }
-
-  section.menu .option-anchor {
-    width: max-content;
-    margin-inline: auto;
-  }
-
-  section.menu .option {
-    width: 350px;
-  }
-
-  section.menu .option h3 {
-    text-align: center;
-  }
-
-  section.inventory .header {
-    margin-left: 40px;
-  }
-
-  .page-title {
-    width: max-content;
-    min-width: max-content;
-    margin-left: auto;
-    padding: 7px 20px;
-    border-radius: unset;
-    border-bottom-left-radius: var(--border-radius-medium);
-    border-top-right-radius: var(--border-radius-medium);
-  }
-
-  section.cotizacion-data {
-    flex-flow: row wrap-reverse;
-    margin-inline: 10%;
-  }
+    header .logo h1 {
+        display: inline;
+    }
+    section.menu {
+        margin-block: 50px;
+    }
+    section.menu .option-anchor {
+        width: max-content;
+        margin-inline: auto;
+    }
+    section.menu .option {
+        width: 350px;
+    }
+    section.menu .option h3 {
+        text-align: center;
+    }
+    section.inventory .header {
+        margin-left: 40px;
+    }
+    .page-title {
+        width: max-content;
+        min-width: max-content;
+        margin-left: auto;
+        padding: 7px 20px;
+        border-radius: unset;
+        border-bottom-left-radius: var(--border-radius-medium);
+        border-top-right-radius: var(--border-radius-medium);
+    }
+    section.cotizacion-data {
+        flex-flow: row wrap-reverse;
+        margin-inline: 10%;
+    }
+    section.parts .data-part .id .name {
+        width: 350px;
+    }
+    section.parts .data-part .user-input {
+        flex-direction: row;
+    }
+    .quantity-field {
+        width: 5em;
+    }
+    section.parts .parts textarea {
+        right: 0%;
+        top: 0%;
+    }
 }
 
 
 
 @media (min-width: 535px) {
-  section.login .container {
-    width: max-content;
-    height: max-content;
-    margin: 50px auto 30px auto;
-    padding: 40px 60px;
-  }
-
-  header .container {
-    padding-inline: 50px;
-  }
-
-  header .logo {
-    gap: 30px;
-  }
-
-  header .logo h1 {
-    font-size: var(--font-size-medium-large);
-  }
+    section.login .container {
+        width: max-content;
+        height: max-content;
+        margin: 50px auto 30px auto;
+        padding: 40px 60px;
+    }
+    header .container {
+        padding-inline: 50px;
+    }
+    header .logo {
+        gap: 30px;
+    }
+    header .logo h1 {
+        font-size: var(--font-size-medium-large);
+    }
 }
 
 
 
 @media(min-width: 750px) {
-  section.inventory .container {
-    flex-direction: row;
-  }
-
-  section.inventory .header h3 {
-    font-size: var(--font-size-medium-small);
-  }
-
-  section.inventory .header svg {
-    width: 40px;
-  }
-
-  section.inventory .description {
-    padding-inline: 50px;
-  }
+    section.inventory .container {
+        flex-direction: row;
+    }
+    section.inventory .header h3 {
+        font-size: var(--font-size-medium-small);
+    }
+    section.inventory .header svg {
+        width: 40px;
+    }
+    section.inventory .description {
+        padding-inline: 50px;
+    }
 }
 
 
 
 @media(min-width: 800px) {
-  article.has-sidebar {
-    flex-direction: row;
-  }
-
-  aside.sidebar-search {
-    position: fixed;
-    flex-direction: column;
-    justify-content: unset;
-    width: max-content;
-    height: 100%;
-    top: 100px;
-    border: none;
-    border-right: 1px solid var(--color-contrast);
-  }
-
-  aside.sidebar-search .tab {
-    padding-inline: 40px;
-    border-right: none !important;
-    border-bottom: 1px solid var(--color-contrast);
-  }
+    article.has-sidebar {
+        flex-direction: row;
+    }
+    aside.sidebar-search {
+        position: fixed;
+        flex-direction: column;
+        justify-content: unset;
+        width: max-content;
+        height: 100%;
+        top: 100px;
+        border: none;
+        border-right: 1px solid var(--color-contrast);
+    }
+    aside.sidebar-search .tab {
+        padding-inline: 40px;
+        border-right: none !important;
+        border-bottom: 1px solid var(--color-contrast);
+    }
+    section.parts .parts {
+        gap: 30px 50px;
+    }
+    section.parts .data-part {
+        flex-direction: row;
+    }
+    .button-delete {
+        position: unset;
+        right: unset;
+        margin-top: auto !important;
+    }
 }
 
 
 
 @media(min-width: 850px) {
-  section.cotizacion-data {
-    justify-content: center;
-  }
-
-  article.cotizacion-result {
-    flex-direction: row;
-  }
+    section.cotizacion-data {
+        justify-content: center;
+    }
+    article.cotizacion-result {
+        flex-direction: row;
+    }
 }
 
 
 
 @media(min-width: 980px) {
-  section.anadir .user-data {
-    max-width: 1500px;
-    flex-flow: row wrap;
-    justify-content: center;
-    margin-inline: auto;
-  }
-
-  section.cotizacion-data {
-    flex-flow: row nowrap;
-    margin-inline: 0;
-  }
+    section.anadir .user-data {
+        max-width: 1500px;
+        flex-flow: row wrap;
+        justify-content: center;
+        margin-inline: auto;
+    }
+    section.cotizacion-data {
+        flex-flow: row nowrap;
+        margin-inline: 0;
+    }
 }
 
 
 
 @media(min-width: 1260px) {
-  aside.sidebar-search {
-    width: 400px;
-  }
+    aside.sidebar-search {
+        width: 400px;
+    }
 }

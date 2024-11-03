@@ -5,23 +5,119 @@ section.parts {
   min-width: 200px;
 }
 
+section.parts .container {
+  margin-inline: auto;
+  align-items: center;
+}
+
 section.parts .parts {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 250px);
-  gap: 10px 50px;
+  gap: 70px 50px;
   justify-content: center;
   margin-block: 20px;
+  padding-bottom: 40px;
+  border-radius: var(--border-radius-medium);
+  border-bottom: 1px solid var(--color-surface-primary-select);
 }
 
 
 
 section.parts .data-part {
+  position: relative;
   gap: 20px;
-  align-items: center;
   justify-content: space-between;
 }
 
-section.parts .data-part {
+section.parts .data-part .item {
+  align-items: end;
+  gap: 25px;
+}
+
+section.parts .data-part .user-input {
   gap: 10px;
-  align-items: center;
+}
+
+
+
+section.parts .data-part .id {
+  gap: 5px;
+}
+
+section.parts .data-part .id .number {
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
+
+
+.quantity-field {
+  max-width: 150px;
+}
+
+
+
+.button-delete {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.button-delete,
+.button-add,
+.button-comment {
+  width: 45px;
+  height: 45px;
+}
+
+.button-delete svg,
+.button-add svg,
+.button-comment svg {
+  transform: translateY(2px);
+}
+
+
+
+section.parts .add-input {
+  gap: 10px;
+  align-items: end;
+}
+
+
+
+section.parts .parts .comment-section {
+  position: relative;
+  margin-top: auto;
+}
+
+section.parts .parts .comment-underlay {
+  z-index: 90;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+section.parts .parts textarea {
+  z-index: 100;
+  overflow-y: scroll;
+  position: absolute;
+  right: 100%;
+  top: 100%;
+  width: 300px;
+  height: 9em;
+  box-shadow: 0 0 30px var(--color-surface-secondary-shadow);
+}
+
+
+
+.no-parts-message.hidden,
+.comment-textarea,
+.comment-underlay {
+  display: none;
+}
+
+.no-parts-message,
+.comment-textarea.active,
+.comment-underlay.active {
+  display: block;
 }

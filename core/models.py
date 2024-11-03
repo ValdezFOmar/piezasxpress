@@ -61,9 +61,10 @@ class Car(models.Model):
 class CarPart(models.Model):
     car = models.ForeignKey(Car, on_delete=models.CASCADE)
     part = models.ForeignKey(Part, on_delete=models.CASCADE)
-    location = models.CharField(max_length=10, validators=[validate_not_empty])
+    location = models.CharField(max_length=10, null=True, validators=[validate_not_empty])
     price = models.DecimalField(max_digits=7, decimal_places=2, validators=[validate_positive])
     quantity = models.IntegerField(default=0, validators=[validate_positive])
+    comment = models.TextField(default='')
 
     class Meta:
         constraints = [models.UniqueConstraint(fields=['car', 'part'], name='unique_car_part')]

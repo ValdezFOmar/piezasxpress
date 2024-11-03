@@ -10,6 +10,7 @@ urlpatterns = [
     path('car/<int:car_id>/parts', views.add_car_parts, name='storage-add-part'),
     # Use to populate the parts catalog with json encoded data
     path('part/register', views.register_part, name='storage-register-part'),
+    path('part/list', views.parts_list, name='storage-list-parts'),
     path('search', simple_view('storage/search.html'), name='storage-search'),
     path(
         'search/autopart',
