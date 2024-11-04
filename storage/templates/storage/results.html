@@ -49,22 +49,19 @@ PiezasXpress | Resultados
     </table>
   </div>
   <div class="nav-buttons flex-row margin-horizontal-right">
-    <a class="button-anchor" href="./anadir.html">
-      <button class="button-base button-outline button-padding-medium button-icon-left">
-        <svg class="flipped" xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 -960 960 960">
-          <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z" />
-        </svg>
-        <p>Cancelar</p>
-      </button>
+    <a class="button-anchor button-base button-outline button-padding-medium button-icon-left"
+      href="{% url 'storage-index' %}">
+      <svg class="flipped" xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 -960 960 960">
+        <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z" />
+      </svg>
+      Cancelar
     </a>
-    <a class="button-anchor" href="./cotizacion.html">
-      <button class="button-base button-fill button-padding-medium button-icon-left">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 -960 960 960">
-          <path
-            d="M440-280h80v-160h160v-80H520v-160h-80v160H280v80h160v160Zm40 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
-        </svg>
-        <p>Añadir</p>
-      </button>
+    <a class="button-anchor button-base button-fill button-padding-medium button-icon-left" href="{% url 'home' %}">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 -960 960 960">
+        <path
+          d="M440-280h80v-160h160v-80H520v-160h-80v160H280v80h160v160Zm40 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
+      </svg>
+      <p>Añadir</p>
     </a>
   </div>
 </section>
