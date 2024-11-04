@@ -1,4 +1,12 @@
-<form method="get" action="{% url 'storage-search-location-results' %}" class="user-data flex-column">
+{% extends "storage/search.html" %}
+
+{% block page_title %}
+{% include "core/components/page-title.html" with title="Buscar por Ubicación" %}
+{% endblock page_title %}
+
+{% block search_form %}
+<form method="post" action="{% url 'storage-search-location' %}" class="user-data flex-column">
+  {% csrf_token %}
   <div class="user-data flex-column">
     <div class="data flex-column">
       <label for="data-part">ID de parte</label>
@@ -19,3 +27,4 @@
     </div>
   </div>
 </form>
+{% endblock search_form %}

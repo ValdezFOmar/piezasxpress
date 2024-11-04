@@ -15,7 +15,6 @@ PiezasXpress | Resultados
 {% block content %}
 {% include "core/components/page-title.html" with title="Resultados" %}
 
-{# Just dummy data for now #}
 <section class="resultado flex-column">
   <div class="scroll-table">
     <table>
@@ -23,6 +22,7 @@ PiezasXpress | Resultados
         <tr>
           <th></th>
           <th scope="col">ID de parte</th>
+          <th scope="col">Nombre</th>
           <th scope="col">Año</th>
           <th scope="col">Modelo</th>
           <th scope="col">Ubicación</th>
@@ -31,127 +31,20 @@ PiezasXpress | Resultados
         </tr>
       </thead>
       <tbody>
+        {% for car_part in parts %}
         <tr>
           <td>
-            <input id="002" type="checkbox">
+            <input id="{{ car_part.part.part_id }}" type="checkbox">
           </td>
-          <td>001</td>
-          <td>2002</td>
-          <td>Tacoma</td>
-          <td>A2C4</td>
-          <td>A00001</td>
-          <td>$15000</td>
+          <td>{{ car_part.part.part_id }}</td>
+          <td>{{ car_part.part.name }}</td>
+          <td>{{ car_part.car.year }}</td>
+          <td>{{ car_part.car.model }}</td>
+          <td>{{ car_part.location|default_if_none:'N/A' }}</td>
+          <td>{{ car_part.car.stock }}</td>
+          <td>${{ car_part.price }}</td>
         </tr>
-        <tr>
-          <td>
-            <input id="002" type="checkbox">
-          </td>
-          <td>001</td>
-          <td>2002</td>
-          <td>Tacoma</td>
-          <td>A2C4</td>
-          <td>A00001</td>
-          <td>$15000</td>
-        </tr>
-        <tr>
-          <td>
-            <input id="002" type="checkbox">
-          </td>
-          <td>001</td>
-          <td>2002</td>
-          <td>Tacoma</td>
-          <td>A2C4</td>
-          <td>A00001</td>
-          <td>$15000</td>
-        </tr>
-        <tr>
-          <td>
-            <input id="002" type="checkbox">
-          </td>
-          <td>001</td>
-          <td>2002</td>
-          <td>Tacoma</td>
-          <td>A2C4</td>
-          <td>A00001</td>
-          <td>$15000</td>
-        </tr>
-        <tr>
-          <td>
-            <input id="002" type="checkbox">
-          </td>
-          <td>001</td>
-          <td>2002</td>
-          <td>Tacoma</td>
-          <td>A2C4</td>
-          <td>A00001</td>
-          <td>$15000</td>
-        </tr>
-        <tr>
-          <td>
-            <input id="002" type="checkbox">
-          </td>
-          <td>001</td>
-          <td>2002</td>
-          <td>Tacoma</td>
-          <td>A2C4</td>
-          <td>A00001</td>
-          <td>$15000</td>
-        </tr>
-        <tr>
-          <td>
-            <input id="002" type="checkbox">
-          </td>
-          <td>001</td>
-          <td>2002</td>
-          <td>Tacoma</td>
-          <td>A2C4</td>
-          <td>A00001</td>
-          <td>$15000</td>
-        </tr>
-        <tr>
-          <td>
-            <input id="002" type="checkbox">
-          </td>
-          <td>001</td>
-          <td>2002</td>
-          <td>Tacoma</td>
-          <td>A2C4</td>
-          <td>A00001</td>
-          <td>$15000</td>
-        </tr>
-        <tr>
-          <td>
-            <input id="002" type="checkbox">
-          </td>
-          <td>001</td>
-          <td>2002</td>
-          <td>Tacoma</td>
-          <td>A2C4</td>
-          <td>A00001</td>
-          <td>$15000</td>
-        </tr>
-        <tr>
-          <td>
-            <input id="002" type="checkbox">
-          </td>
-          <td>001</td>
-          <td>2002</td>
-          <td>Tacoma</td>
-          <td>A2C4</td>
-          <td>A00001</td>
-          <td>$15000</td>
-        </tr>
-        <tr>
-          <td>
-            <input id="002" type="checkbox">
-          </td>
-          <td>001</td>
-          <td>2002</td>
-          <td>Tacoma</td>
-          <td>A2C4</td>
-          <td>A00001</td>
-          <td>$15000</td>
-        </tr>
+        {% endfor %}
       </tbody>
     </table>
   </div>

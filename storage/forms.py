@@ -1,10 +1,13 @@
 from django import forms
 
-from core.models import Car
+from core.models import Car, validate_not_empty
 
 
 class SearchAutoPartForm(forms.Form):
     pass
+
+class SearchStockForm(forms.Form):
+    stock = forms.CharField(validators=[validate_not_empty])
 
 
 class CarModelForm(forms.ModelForm):

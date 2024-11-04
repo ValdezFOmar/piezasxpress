@@ -1,4 +1,12 @@
-<form method="get" action="{% url 'storage-search-autopart-results' %}" class="user-data flex-column">
+{% extends "storage/search.html" %}
+
+{% block page_title %}
+{% include "core/components/page-title.html" with title="Buscar Autoparte" %}
+{% endblock page_title %}
+
+{% block search_form %}
+<form method="post" action="{% url 'storage-search-autopart' %}" class="user-data flex-column">
+  {% csrf_token %}
   <div class="data flex-column">
     <label for="data-year">Año</label>
     <input name="data-year" id="data-year" type="number" min="1900" max="2099" step="1">
@@ -23,3 +31,4 @@
     </button>
   </div>
 </form>
+{% endblock search_form %}

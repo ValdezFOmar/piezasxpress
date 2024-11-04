@@ -1,8 +1,16 @@
-<form method="get" action="{% url 'storage-search-stock-results' %}" class="user-data flex-column">
+{% extends "storage/search.html" %}
+
+{% block page_title %}
+{% include "core/components/page-title.html" with title="Buscar Stock" %}
+{% endblock page_title %}
+
+{% block search_form %}
+<form method="post" action="{% url 'storage-search-stock' %}" class="user-data flex-column">
+  {% csrf_token %}
   <div class="user-data flex-column">
     <div class="data flex-column">
-      <label for="data-part">ID de vehículo / stock</label>
-      <input name="data-part" id="data-part" type="text" spellcheck="false">
+      <label for="stock">ID de vehículo / stock</label>
+      <input name="stock" id="stock" type="text" spellcheck="false">
     </div>
   </div>
   <div class="margin-horizontal-center">
@@ -15,3 +23,4 @@
     </button>
   </div>
 </form>
+{% endblock search_form %}

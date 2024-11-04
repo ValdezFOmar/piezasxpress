@@ -6,13 +6,14 @@ from http import HTTPStatus
 from typing import Any, NamedTuple, TypedDict
 
 from django.contrib.auth.decorators import login_required
-from django.http import HttpRequest, HttpResponse, HttpResponseBadRequest
+from django.http import HttpRequest, HttpResponse, HttpResponseBadRequest, HttpResponseNotAllowed
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.csrf import csrf_exempt
 
-from core.models import Car, CarPart as CarPartModel, Part
+from core.models import Car, Part
+from core.models import CarPart as CarPartModel
 
-from .forms import CarModelForm
+from .forms import CarModelForm, SearchStockForm
 
 
 class PartDefinition(NamedTuple):
@@ -26,6 +27,11 @@ class CarPart(TypedDict):
     price: Decimal
     quantity: int
     comment: str
+
+
+@login_required
+def search(_: HttpRequest) -> HttpResponse:
+    return redirect('storage-search-autopart')
 
 
 @login_required
@@ -47,7 +53,7 @@ def add_car_parts(request: HttpRequest, car_id: int) -> HttpResponse:
     if request.method == 'GET':
         return render(request, 'storage/add-part.html', {'car': car})
     if request.method != 'POST':
-        return HttpResponseBadRequest()
+        return HttpResponseNotAllowed(['POST', 'GET'])
 
     try:
         parts: list[CarPart] = json.loads(
@@ -75,7 +81,7 @@ def add_car_parts(request: HttpRequest, car_id: int) -> HttpResponse:
 @csrf_exempt
 def register_part(request: HttpRequest) -> HttpResponse:
     if request.method != 'POST':
-        return HttpResponseBadRequest()
+        return HttpResponseNotAllowed(['POST'])
 
     parts: list[PartDefinition] = json.loads(
         request.body, object_hook=lambda attrs: PartDefinition(**attrs)
@@ -88,7 +94,7 @@ def register_part(request: HttpRequest) -> HttpResponse:
 
 def parts_list(request: HttpRequest) -> HttpResponse:
     if request.method != 'GET':
-        return HttpResponseBadRequest()
+        return HttpResponseNotAllowed(['GET'])
     parts = [{'id': p.part_id, 'name': p.name} for p in Part.objects.all()]
     content = json.dumps(parts)
     return HttpResponse(content)
@@ -96,15 +102,31 @@ def parts_list(request: HttpRequest) -> HttpResponse:
 
 # TODO: Actually implement the search features
 @login_required
-def search_autopart_results(request: HttpRequest) -> HttpResponse:
-    return render(request, 'storage/results.html')
+def search_autopart(request: HttpRequest) -> HttpResponse:
+    if request.method == 'POST':
+        pass
+    else:
+        pass
+    return render(request, 'storage/search-autopart.html')
 
 
 @login_required
-def search_location_results(request: HttpRequest) -> HttpResponse:
-    return render(request, 'storage/results.html')
+def search_location(request: HttpRequest) -> HttpResponse:
+    if request.method == 'POST':
+        pass
+    else:
+        pass
+    return render(request, 'storage/search-location.html')
 
 
 @login_required
-def search_stock_results(request: HttpRequest) -> HttpResponse:
-    return render(request, 'storage/results.html')
+def search_stock(request: HttpRequest) -> HttpResponse:
+    if request.method == 'POST':
+        form = SearchStockForm(request.POST)
+        if form.is_valid():
+            stock = form.cleaned_data['stock']
+            parts = CarPartModel.objects.filter(car__stock=stock, )
+            return render(request, 'storage/results.html', {'parts': parts})
+    else:
+        form = SearchStockForm()
+    return render(request, 'storage/search-stock.html', {'form': form})

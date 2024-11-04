@@ -10,30 +10,27 @@ PiezasXpress | Inventario - Buscar
 <meta name="description" content="Buscar inventario por medio de datos identificadores" />
 
 <link rel="stylesheet" href="{% static 'storage/styles/search.css' %}" />
-
-<script src="https://unpkg.com/htmx.org@2.0.2"
-  integrity="sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ" crossorigin="anonymous"></script>
 {% endblock head %}
 
 {% block content %}
+
+{% block page_title %}
 {% include "core/components/page-title.html" with title="Buscar" %}
+{% endblock page_title %}
 
 <section class="has-sidebar flex-column">
   <aside class="sidebar-search flex-row">
-    <a hx-get="{% url 'storage-search-autopart' %}" hx-trigger="click" hx-target="#search-form-container"
-      hx-swap="innerHTML" class="tab-anchor">
+    <a href="{% url 'storage-search-autopart' %}" class="tab-anchor">
       <div class="tab">
         <p>Autoparte</p>
       </div>
     </a>
-    <a hx-get="{% url 'storage-search-location' %}" hx-trigger="click" hx-target="#search-form-container"
-      hx-swap="innerHTML" class="tab-anchor">
+    <a href="{% url 'storage-search-location' %}" class="tab-anchor">
       <div class="tab">
         <p>Ubicación</p>
       </div>
     </a>
-    <a hx-get="{% url 'storage-search-stock' %}" hx-trigger="click" hx-target="#search-form-container"
-      hx-swap="innerHTML" class="tab-anchor">
+    <a href="{% url 'storage-search-stock' %}" class="tab-anchor">
       <div class="tab">
         <p>Stock</p>
       </div>
@@ -41,7 +38,9 @@ PiezasXpress | Inventario - Buscar
   </aside>
 
   <section id="search-form-container" class="buscar flex-column">
-    {% include "storage/search-autopart.html" %}
+    {% block search_form %}
+
+    {% endblock search_form %}
   </section>
 
   <section class="buscar flex-column">
