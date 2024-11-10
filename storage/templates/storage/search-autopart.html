@@ -9,17 +9,19 @@
   {% csrf_token %}
   <div class="data flex-column">
     <label for="data-year">Año</label>
-    <input name="data-year" id="data-year" type="number" min="1900" max="2099" step="1">
+    <input name="year" id="data-year" type="number" min="1900" max="2099" step="1">
   </div>
   <div class="data flex-column">
     <label for="data-model">Modelo</label>
-    <select name="data-model" id="data-model">
-      <option value="">---</option>
+    <select name="model" id="data-model">
+      {% for model in models %}
+      <option value="{{ model }}">{{ model }}</option>
+      {% endfor %}
     </select>
   </div>
   <div class="data flex-column">
     <label for="data-part">ID de parte</label>
-    <input name="data-part" id="data-part" type="text" spellcheck="false">
+    <input name="part_id" id="data-part" type="text" spellcheck="false">
   </div>
   <div class="margin-horizontal-center">
     <button type="submit" class="button-anchor button-base button-fill button-padding-medium button-icon-left">
@@ -27,7 +29,7 @@
         <path
           d="M80-200v-80h400v80H80Zm0-200v-80h200v80H80Zm0-200v-80h200v80H80Zm744 400L670-354q-24 17-52.5 25.5T560-320q-83 0-141.5-58.5T360-520q0-83 58.5-141.5T560-720q83 0 141.5 58.5T760-520q0 29-8.5 57.5T726-410l154 154-56 56ZM560-400q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Z" />
       </svg>
-      Buscar
+      <p>Buscar</p>
     </button>
   </div>
 </form>

@@ -20,7 +20,7 @@
     --font-size-medium-small: 1.5rem;
     --font-size-small: 1.2rem;
     --font-size-extra-small: 1rem;
-
+    
     --border-radius-medium: 7px;
 }
 *,
@@ -131,7 +131,7 @@ button > * {
     box-shadow: 2px 3px 5px var(--color-surface-primary-shadow);
     transition: all 0.1s;
 }
-.button-base {
+.button-base p {
     font-size: var(--font-size-small);
 }
 
@@ -165,7 +165,7 @@ button > * {
     letter-spacing: 0.07em;
     background-color: transparent;
 }
-.button-outline {
+.button-outline p {
     color: var(--color-primary);
     user-select: none;
 }
@@ -175,7 +175,7 @@ button > * {
 .button-outline:hover {
     background-color: var(--color-primary);
 }
-.button-outline:hover {
+.button-outline:hover p {
     color: var(--color-surface-primary);
     text-shadow: 1px 0 0 var(--color-surface-primary);
 }
@@ -197,7 +197,7 @@ button > * {
     letter-spacing: 0.07em;
     background-color: var(--color-primary);
 }
-.button-fill {
+.button-fill p {
     color: var(--color-surface-primary);
     text-shadow: 1px 0 0 var(--color-surface-primary);
     user-select: none;
@@ -208,7 +208,7 @@ button > * {
 .button-fill:hover {
     background-color: transparent;
 }
-.button-fill:hover {
+.button-fill:hover p {
     color: var(--color-primary);
     text-shadow: none;
 }
@@ -220,7 +220,7 @@ button > * {
     border: 2px solid var(--color-contrast);
     background-color: var(--color-contrast);
 }
-.button-fill:active {
+.button-fill:active p {
     color: var(--color-surface-primary);
     text-shadow: 1px 0 0 var(--color-surface-primary);
 }
