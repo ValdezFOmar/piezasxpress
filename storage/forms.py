@@ -4,7 +4,15 @@ from core.models import Car, validate_not_empty
 
 
 class SearchAutoPartForm(forms.Form):
-    pass
+    year = forms.IntegerField()
+    model = forms.CharField()
+    part_id = forms.IntegerField()
+
+
+class SearchLocationForm(forms.Form):
+    part_id = forms.IntegerField()
+    location = forms.CharField()
+
 
 class SearchStockForm(forms.Form):
     stock = forms.CharField(validators=[validate_not_empty])
