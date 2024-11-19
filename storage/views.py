@@ -115,7 +115,7 @@ def search_autopart(request: HttpRequest) -> HttpResponse:
             return render(request, 'storage/results.html', {'parts': parts})
     else:
         form = SearchAutoPartForm()
-    models = (car.model for car in Car.objects.all())
+    models = Car.objects.order_by('model').values_list('model', flat=True).distinct()
     context = {'models': models, 'form': form}
     return render(request, 'storage/search-autopart.html', context)
 
