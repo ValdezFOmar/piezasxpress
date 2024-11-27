@@ -1,0 +1,51 @@
+section.cotizacion-data {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: start;
+    gap: 30px;
+    margin-block: 20px 50px;
+}
+section.cotizacion-data .session-data {
+    gap: 10px;
+}
+section.cotizacion-data .id {
+    color: var(--color-primary);
+}
+
+
+
+article.cotizacion-result {
+    justify-content: center;
+    gap: 20px;
+    margin: 20px auto;
+    width: 90%;
+    min-width: 200px;
+}
+
+
+
+section.cotizacion-table .scroll-table {
+    overflow: auto;
+    height: 350px;
+    width: 100%;
+}
+aside.cotizacion-options {
+    justify-content: space-between;
+    gap: 30px;
+}
+aside.cotizacion-options .nav-buttons {
+    gap: 10px;
+}
+aside.cotizacion-options .price {
+    width: 100%;
+    text-align: center;
+}
+aside.cotizacion-options .nav-buttons {
+    width: 100%;
+    max-width: 300px;
+}
+aside.cotizacion-options .button-anchor,
+aside.cotizacion-options .button-anchor button {
+    width: 100%;
+}
