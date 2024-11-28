@@ -1,6 +1,6 @@
 from django.db import models
 
-from core.models import CarPart
+from core.models import CarPart, validate_positive
 
 
 class Quotation(models.Model):
@@ -26,3 +26,12 @@ class QuotationPart(models.Model):
 
     def __str__(self) -> str:
         return f'{self.car_part.part.name} <Quotation:{self.quotation.id}>'
+
+
+class Bill(models.Model):
+    quotation = models.OneToOneField(Quotation, on_delete=models.CASCADE)
+    date = models.DateField()
+    payment = models.DecimalField(max_digits=10, decimal_places=2, validators=[validate_positive])
+
+    def __str__(self) -> str:
+        return f'{self.date} <quotation:{self.quotation.id}>'

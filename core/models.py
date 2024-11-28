@@ -55,7 +55,7 @@ class Car(models.Model):
     year = models.IntegerField(validators=[validate_car_year])
 
     def __str__(self) -> str:
-        return f'{self.model} ({self.year})'
+        return f'{self.model} ({self.year}) <stock:{self.stock}>'
 
 
 class CarPart(models.Model):
@@ -68,3 +68,6 @@ class CarPart(models.Model):
 
     class Meta:
         constraints = [models.UniqueConstraint(fields=['car', 'part'], name='unique_car_part')]
+
+    def __str__(self) -> str:
+        return f'{self.part.name} <stock:{self.car.stock}>'

@@ -4,3 +4,4 @@ from . import models
 
 admin.site.register(models.Quotation)
 admin.site.register(models.QuotationPart)
+admin.site.register(models.Bill)

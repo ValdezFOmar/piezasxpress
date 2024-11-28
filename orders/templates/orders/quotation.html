@@ -14,7 +14,7 @@ PiezasXpress | Búsqueda de órdenes
 {% block content %}
 {% include "core/components/page-title.html" with title="Cotización" %}
 <section class="cotizacion-data">
-  <form id="quotation-details" class="data flex-column">
+  <form id="quotation-details" method="post" action="{% url 'orders-save-quotation' %}" class="data flex-column">
     {% csrf_token %}
     <label for="client">Nombre de cliente</label>
     <input name="client" id="data-cliente" type="text" spellcheck="false" required>
@@ -70,7 +70,7 @@ PiezasXpress | Búsqueda de órdenes
         </svg>
         <p>Añadir más partes</p>
       </a>
-      <button type="submit" form="quotation-details" formmethod="post" formaction="{% url 'orders-save-quotation' %}"
+      <button type="submit" form="quotation-details" name="make" value="quotation"
         class="button-anchor button-base button-outline button-padding-medium button-icon-left">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
           <path
@@ -78,13 +78,14 @@ PiezasXpress | Búsqueda de órdenes
         </svg>
         <p>Guardar</p>
       </button>
-      <a href="{% url 'home' %}" class="button-anchor button-base button-fill button-padding-medium button-icon-left">
+      <button type="submit" form="quotation-details" name="make" value="bill"
+        class="button-anchor button-base button-fill button-padding-medium button-icon-left">
         <svg xmlns="http://www.w3.org/2000/svg" height="24px" width="24px" viewBox="0 -960 960 960">
           <path
             d="M560-440q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35ZM280-320q-33 0-56.5-23.5T200-400v-320q0-33 23.5-56.5T280-800h560q33 0 56.5 23.5T920-720v320q0 33-23.5 56.5T840-320H280Zm80-80h400q0-33 23.5-56.5T840-480v-160q-33 0-56.5-23.5T760-720H360q0 33-23.5 56.5T280-640v160q33 0 56.5 23.5T360-400Zm440 240H120q-33 0-56.5-23.5T40-240v-440h80v440h680v80ZM280-400v-320 320Z" />
         </svg>
         <p>Pagar</p>
-      </a>
+      </button>
     </div>
   </aside>
 </article>
