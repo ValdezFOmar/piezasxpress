@@ -14,10 +14,11 @@ PiezasXpress | Búsqueda de órdenes
 {% block content %}
 {% include "core/components/page-title.html" with title="Cotización" %}
 <section class="cotizacion-data">
-  <div class="data flex-column">
-    <label for="data-cliente">Nombre de cliente</label>
-    <input name="data-cliente" id="data-cliente" type="text" spellcheck="false">
-  </div>
+  <form id="quotation-details" class="data flex-column">
+    {% csrf_token %}
+    <label for="client">Nombre de cliente</label>
+    <input name="client" id="data-cliente" type="text" spellcheck="false" required>
+  </form>
   <div class="session-data flex-column">
     <p>Usuario: {{ user.username }}</p>
     <p>Fecha: {{ date|date:"d/m/Y" }}</p>
@@ -54,7 +55,8 @@ PiezasXpress | Búsqueda de órdenes
   <aside class="cotizacion-options flex-column">
     <h2 class="price">$ {{ total_price }}</h2>
     <div class="nav-buttons margin-horizontal-center flex-row">
-      <a href="{% url 'home' %}" class="button-anchor button-base button-outline button-padding-medium button-icon-left">
+      <a href="{% url 'home' %}"
+        class="button-anchor button-base button-outline button-padding-medium button-icon-left">
         <svg class="flipped" xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 -960 960 960">
           <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z" />
         </svg>
@@ -68,13 +70,14 @@ PiezasXpress | Búsqueda de órdenes
         </svg>
         <p>Añadir más partes</p>
       </a>
-      <a href="{% url 'home' %}" class="button-anchor button-base button-outline button-padding-medium button-icon-left">
+      <button type="submit" form="quotation-details" formmethod="post" formaction="{% url 'orders-save-quotation' %}"
+        class="button-anchor button-base button-outline button-padding-medium button-icon-left">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
           <path
             d="M5 21h14a2 2 0 0 0 2-2V8l-5-5H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2zM7 5h4v2h2V5h2v4H7V5zm0 8h10v6H7v-6z" />
         </svg>
         <p>Guardar</p>
-      </a>
+      </button>
       <a href="{% url 'home' %}" class="button-anchor button-base button-fill button-padding-medium button-icon-left">
         <svg xmlns="http://www.w3.org/2000/svg" height="24px" width="24px" viewBox="0 -960 960 960">
           <path

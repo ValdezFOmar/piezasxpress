@@ -8,6 +8,9 @@ from django.utils import timezone
 
 from core.models import CarPart
 
+from .forms import QuotationForm
+from .models import Quotation, QuotationPart
+
 
 @login_required
 def quotation_form(request: HttpRequest) -> HttpResponse:
@@ -23,6 +26,33 @@ def quotation_form(request: HttpRequest) -> HttpResponse:
         'total_price': price,
     }
     return render(request, 'orders/quotation.html', context)
+
+
+@login_required
+def save_quotation(request: HttpRequest) -> HttpResponse:
+    if request.method != 'POST':
+        return HttpResponseNotAllowed(['POST'])
+
+    form = QuotationForm(request.POST)
+    if not form.is_valid():
+        return redirect('orders-quotation-form')
+    if 'parts' not in request.session:
+        return redirect('home')
+
+    client = form.cleaned_data['client']
+    part_ids = request.session['parts']
+    parts = CarPart.objects.filter(id__in=part_ids)
+    quotation = Quotation.objects.create(
+        client_name=client,
+        date=timezone.now(),
+        user=request.user.username,  # pyright: ignore[reportAttributeAccessIssue]
+    )
+
+    QuotationPart.objects.bulk_create(
+        QuotationPart(car_part=part, quotation=quotation) for part in parts
+    )
+
+    return redirect('home')
 
 
 @login_required

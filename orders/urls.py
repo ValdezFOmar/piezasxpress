@@ -1,10 +1,11 @@
 from django.urls import path
 
 from core.views import simple_view
-from .views import add_parts, quotation_form
+from . import views
 
 urlpatterns = [
     path('', simple_view('orders/search-order.html'), name='orders-search-order'),
-    path('add-parts', add_parts, name='orders-add-parts'),
-    path('quotation', quotation_form, name='orders-quotation-form')
+    path('add-parts', views.add_parts, name='orders-add-parts'),
+    path('quotation', views.quotation_form, name='orders-quotation-form'),
+    path('quotation/save', views.save_quotation, name='orders-save-quotation'),
 ]
