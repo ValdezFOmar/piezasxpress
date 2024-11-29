@@ -29,9 +29,11 @@ class QuotationPart(models.Model):
 
 
 class Bill(models.Model):
+    id: models.BigAutoField  # type hinting
+
     quotation = models.OneToOneField(Quotation, on_delete=models.CASCADE)
     date = models.DateField()
     payment = models.DecimalField(max_digits=10, decimal_places=2, validators=[validate_positive])
 
     def __str__(self) -> str:
-        return f'{self.date} <quotation:{self.quotation.id}>'
+        return f'{self.quotation.client_name} ({self.date}) <id:{self.id}>'

@@ -15,12 +15,19 @@ PiezasXpress | Factura
 {% include "core/components/page-title.html" with title="Factura" %}
 
 <section class="cotizacion-data">
-  <h2 class="id">ID de factura: {{ bill.id }}</h2>
+  {% if not has_bill %}
+  <form id="create-bill-form" method="post" action="{% url 'orders-create-bill' id=quotation.id %}"
+    style="display: none">
+    {% csrf_token %}
+  </form>
+  {% endif %}
   <div class="session-data flex-column">
-    <p>Fecha: {{ bill.date|date:"d/m/Y" }}</p>
-    <p>Usuario: {{ bill.quotation.user }}</p>
-    <p>Nombre de cliente: {{ bill.quotation.client_name }}</p>
+    <p>Usuario: {{ quotation.user }}</p>
+    <p>Fecha: {{ quotation.date|date:"d/m/Y" }}</p>
   </div>
+  {% if has_bill %}
+  <h2 class="id">ID de factura: {{ quotation.bill.id }}</h2>
+  {% endif %}
 </section>
 <article class="cotizacion-result flex-column">
   <section class="cotizacion-table">
@@ -36,7 +43,7 @@ PiezasXpress | Factura
           </tr>
         </thead>
         <tbody>
-          {% for car_part in bill.quotation.parts.all %}
+          {% for car_part in quotation.parts.all %}
           <tr id="{{ car_part.id }}">
             <td>{{ car_part.part.part_id }}</td>
             <td>{{ car_part.car.year }}</td>
@@ -50,15 +57,29 @@ PiezasXpress | Factura
     </div>
   </section>
   <aside class="cotizacion-options flex-column">
-    <h2 class="price">$ {{ bill.payment }}</h2>
+    {% if has_bill %}
+    <h2 class="price">$ {{ quotation.bill.payment }}</h2>
+    {% else %}
+    <h2 class="price">$ {{ total_price }}</h2>
+    {% endif %}
     <div class="nav-buttons margin-horizontal-center flex-row">
-      <a href="{% url 'orders-search-order' %}"
+      <a href="{% url 'home' %}"
         class="button-anchor button-base button-outline button-padding-medium button-icon-left">
         <svg class="flipped" xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 -960 960 960">
           <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z" />
         </svg>
-        <p>Regresar</p>
+        <p>Cancelar</p>
       </a>
+      {% if not has_bill %}
+      <button type="submit" form="create-bill-form"
+        class="button-anchor button-base button-fill button-padding-medium button-icon-left">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+          <path
+            d="M5 21h14a2 2 0 0 0 2-2V8l-5-5H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2zM7 5h4v2h2V5h2v4H7V5zm0 8h10v6H7v-6z" />
+        </svg>
+        <p>Guardar</p>
+      </button>
+      {% endif %}
     </div>
   </aside>
   <div class="container-bottom"></div>

@@ -1,0 +1,27 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}
+PiezasXpress | Ordenes
+{% endblock title %}
+
+{% block head %}
+<meta name="title" content="PiezasXpress | Ordenes" />
+<meta name="description" content="Resultado de busqueda de ordenes" />
+{% endblock head %}
+
+{% block content %}
+<section class="flex-column">
+  {% include "core/components/page-title.html" with title="Resultados" %}
+  <p>No se encontraron resultados para la búsqueda realizada.</p>
+  <div class="nav-buttons flex-row margin-horizontal-right">
+    <a href="{% url 'orders-search-order' %}"
+      class="button-anchor button-base button-outline button-padding-medium button-icon-left">
+      <svg class="flipped" xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 -960 960 960">
+        <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z" />
+      </svg>
+      <p>Regresar</p>
+    </a>
+  </div>
+</section>
+{% endblock content %}

@@ -18,24 +18,24 @@ PiezasXpress | Búsqueda de órdenes
 
 <article>
   <section class="ordenes flex-column">
-    <div class="user-data flex-column">
+    <form id="search-form" method="get" action="{% url 'orders-search-order-results' %}" class="user-data flex-column">
       <div class="data flex-column">
         <label for="data-orden">Tipo de orden</label>
-        <select name="data-orden" id="data-orden">
-          <option value="none" selected disabled hidden>-- Seleccione una opción --</option>
-          <option value="cotizacion">Cotización</option>
-          <option value="factura">Factura</option>
+        <select name="order_type" id="data-orden" required>
+          <option value="" selected disabled hidden>-- Seleccione una opción --</option>
+          <option value="quotation">Cotización</option>
+          <option value="bill">Factura</option>
         </select>
       </div>
       <div class="data flex-column">
         <label id="data-id-label" for="data-id">ID de orden</label>
-        <input name="data-id" id="data-id" type="text" spellcheck="false">
+        <input name="order_id" id="data-id" type="text" spellcheck="false" required>
       </div>
       <div class="data flex-column">
         <label for="data-cliente">Nombre de cliente</label>
-        <input name="data-cliente" id="data-cliente" type="text" spellcheck="false">
+        <input name="client_name" id="data-cliente" type="text" spellcheck="false" required>
       </div>
-    </div>
+    </form>
     <div class="nav-buttons flex-row margin-horizontal-right">
       <a class="button-anchor button-base button-outline button-padding-medium button-icon-left"
         href="{% url 'home' %}">
@@ -44,13 +44,14 @@ PiezasXpress | Búsqueda de órdenes
         </svg>
         <p>Regresar</p>
       </a>
-      <a class="button-anchor button-base button-fill button-padding-medium button-icon-left" href="">
+      <button type="submit" form="search-form"
+        class="button-anchor button-base button-fill button-padding-medium button-icon-left" href="">
         <svg class="icon" width="24px" heigth="24px" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
           <path
             d="M80-200v-80h400v80H80Zm0-200v-80h200v80H80Zm0-200v-80h200v80H80Zm744 400L670-354q-24 17-52.5 25.5T560-320q-83 0-141.5-58.5T360-520q0-83 58.5-141.5T560-720q83 0 141.5 58.5T760-520q0 29-8.5 57.5T726-410l154 154-56 56ZM560-400q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Z" />
         </svg>
         <p>Buscar</p>
-      </a>
+      </button>
     </div>
   </section>
 </article>
