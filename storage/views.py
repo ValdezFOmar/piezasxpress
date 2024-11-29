@@ -111,7 +111,7 @@ def search_autopart(request: HttpRequest) -> HttpResponse:
                 car__year=year,
                 car__model=model,
                 part__part_id=part_id,
-            )
+            ).order_by('part__part_id')
             return render(request, 'storage/results.html', {'parts': parts})
     else:
         form = SearchAutoPartForm()
@@ -130,7 +130,7 @@ def search_location(request: HttpRequest) -> HttpResponse:
             parts = CarPartModel.objects.filter(
                 part__part_id=part_id,
                 location=location,
-            )
+            ).order_by('part__part_id')
             return render(request, 'storage/results.html', {'parts': parts})
     else:
         form = SearchLocationForm()
@@ -143,7 +143,7 @@ def search_stock(request: HttpRequest) -> HttpResponse:
         form = SearchStockForm(request.POST)
         if form.is_valid():
             stock = form.cleaned_data['stock']
-            parts = CarPartModel.objects.filter(car__stock=stock)
+            parts = CarPartModel.objects.filter(car__stock=stock).order_by('part__part_id')
             return render(request, 'storage/results.html', {'parts': parts})
     else:
         form = SearchStockForm()
