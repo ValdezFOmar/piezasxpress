@@ -1,0 +1,21 @@
+section.no-result {
+  gap: 20px;
+  width: 90%;
+  padding-top: 50px;
+}
+section.no-result .container {
+  overflow: hidden;
+  align-items: center;
+  gap: 10px;
+  max-width: max-content;
+  min-width: 170px;
+  padding: 15px 20px;
+  border: 2px solid var(--color-contrast);
+  border-radius: var(--border-radius-medium);
+}
+section.no-result .container p {
+  text-align: center;
+}
+section.no-result .container svg {
+  min-width: 36px;
+}

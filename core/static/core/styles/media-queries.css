@@ -68,6 +68,9 @@
         right: 0%;
         top: 0%;
     }
+    section.no-result .container {
+        flex-direction: row;
+    }
 }
 
 
