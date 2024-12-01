@@ -1,5 +1,5 @@
 import json
-from typing import TYPE_CHECKING, TypeVar
+from typing import TYPE_CHECKING
 
 from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, HttpResponse, HttpResponseBadRequest, HttpResponseNotAllowed
@@ -113,10 +113,21 @@ def add_parts(request: HttpRequest) -> HttpResponse:
     except json.JSONDecodeError as error:
         return HttpResponseBadRequest(content=error.msg)
 
+    if request.session.get('add_parts', False):
+        parts = request.session['parts'] + parts
+
     request.session['parts'] = parts
-    print(request.session['parts'])
+    request.session['add_parts'] = False
 
     return redirect('orders-quotation-form')
+
+
+@login_required
+def add_more_parts(request: HttpRequest) -> HttpResponse:
+    if request.method != 'POST':
+        return HttpResponseBadRequest(['POST'])
+    request.session['add_parts'] = True
+    return redirect('storage-search')
 
 
 @login_required
