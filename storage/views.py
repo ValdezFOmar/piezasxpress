@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 import json
 from decimal import Decimal
 from http import HTTPStatus
@@ -111,7 +109,7 @@ def search_autopart(request: HttpRequest) -> HttpResponse:
                 car__year=year,
                 car__model=model,
                 part__part_id=part_id,
-            ).order_by('part__part_id')
+            ).order_by('car__model')
             return render(request, 'storage/results.html', {'parts': parts})
     else:
         form = SearchAutoPartForm()
@@ -130,7 +128,7 @@ def search_location(request: HttpRequest) -> HttpResponse:
             parts = CarPartModel.objects.filter(
                 part__part_id=part_id,
                 location=location,
-            ).order_by('part__part_id')
+            ).order_by('location')
             return render(request, 'storage/results.html', {'parts': parts})
     else:
         form = SearchLocationForm()
