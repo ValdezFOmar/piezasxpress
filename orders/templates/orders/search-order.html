@@ -16,6 +16,10 @@ PiezasXpress | Búsqueda de órdenes
 {% block content %}
 {% include "core/components/page-title.html" with title="Búsqueda de órdenes" %}
 
+{% if invalid_credentials %}
+  {% include "core/components/alert.html" with message="Favor de ingresar un ID de Cotización o Factura válido." %}
+{% endif %}
+
 <article>
   <section class="ordenes flex-column">
     <form id="search-form" method="get" action="{% url 'orders-search-order-results' %}" class="user-data flex-column">

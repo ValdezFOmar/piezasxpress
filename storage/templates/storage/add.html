@@ -14,6 +14,10 @@ PiezasXpress | Añadir
 {% block content %}
 {% include "core/components/page-title.html" with title="Añadir" %}
 
+{% if invalid_credentials %}
+  {% include "core/components/alert.html" with message="Ya existe una entrada con el mismo stock registrado. Por favor, verifica los datos e intenta nuevamente." %}
+{% endif %}
+
 <section class="anadir flex-column">
   <form id="add-form" method="post" action="{% url 'storage-add' %}" class="user-data flex-column">
     {% csrf_token %}
