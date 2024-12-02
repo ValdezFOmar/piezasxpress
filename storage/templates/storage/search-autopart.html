@@ -5,6 +5,11 @@
 {% endblock page_title %}
 
 {% block search_form %}
+
+{% if invalid_credentials %}
+  {% include "core/components/alert.html" %}
+{% endif %}
+
 <form method="post" action="{% url 'storage-search-autopart' %}" class="user-data flex-column">
   {% csrf_token %}
   <div class="data flex-column">

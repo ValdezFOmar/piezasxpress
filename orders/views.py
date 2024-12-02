@@ -34,7 +34,7 @@ def search_order(request: HttpRequest) -> HttpResponse:
 
     form = SearchOrderForm(request.GET)
     if not form.is_valid():
-        return redirect('orders-search-order')
+        return render(request, 'orders/search-order.html', {'invalid_credentials': True})
 
     order_type = form.cleaned_data['order_type']
     order_id = form.cleaned_data['order_id']

@@ -4,7 +4,11 @@ from core.models import Car, validate_not_empty
 
 
 class SearchAutoPartForm(forms.Form):
-    year = forms.IntegerField()
+    year = forms.IntegerField(
+        error_messages={
+            'invalid': 'Por favor, introduce un número válido para el año.',
+        }
+    )
     model = forms.CharField()
     part_id = forms.IntegerField()
 

@@ -35,14 +35,18 @@ def search(_: HttpRequest) -> HttpResponse:
 
 @login_required
 def add_car(request: HttpRequest) -> HttpResponse:
+    invalid_credentials = False
     if request.method == 'POST':
         form = CarModelForm(request.POST)
         if form.is_valid():
             car: Car = form.save(commit=True)
             return redirect('storage-add-part', car_id=car.id)
+        else:
+            invalid_credentials = True
     else:
         form = CarModelForm()
-    return render(request, 'storage/add.html', {'form': form})
+    context = {'form': form, 'invalid_credentials': invalid_credentials }
+    return render(request, 'storage/add.html', context)
 
 
 @login_required
@@ -99,6 +103,7 @@ def parts_list(request: HttpRequest) -> HttpResponse:
 
 @login_required
 def search_autopart(request: HttpRequest) -> HttpResponse:
+    invalid_credentials = False
     if request.method == 'POST':
         form = SearchAutoPartForm(request.POST)
         if form.is_valid():
@@ -110,16 +115,24 @@ def search_autopart(request: HttpRequest) -> HttpResponse:
                 car__model=model,
                 part__part_id=part_id,
             ).order_by('car__model')
-            return render(request, 'storage/results.html', {'parts': parts})
+
+            if parts.exists():
+                return render(request, 'storage/results.html', {'parts': parts})
+            else:
+                invalid_credentials = True
+        else:
+            invalid_credentials = True
+
     else:
         form = SearchAutoPartForm()
     models = Car.objects.order_by('model').values_list('model', flat=True).distinct()
-    context = {'models': models, 'form': form}
+    context = {'models': models, 'form': form, 'invalid_credentials': invalid_credentials}
     return render(request, 'storage/search-autopart.html', context)
 
 
 @login_required
 def search_location(request: HttpRequest) -> HttpResponse:
+    invalid_credentials = False
     if request.method == 'POST':
         form = SearchLocationForm(request.POST)
         if form.is_valid():
@@ -129,20 +142,37 @@ def search_location(request: HttpRequest) -> HttpResponse:
                 part__part_id=part_id,
                 location=location,
             ).order_by('location')
-            return render(request, 'storage/results.html', {'parts': parts})
+
+            if parts.exists():
+                return render(request, 'storage/results.html', {'parts': parts})
+            else:
+                invalid_credentials = True
+        else:
+            invalid_credentials = True
+
     else:
         form = SearchLocationForm()
-    return render(request, 'storage/search-location.html', {'form': form})
+    context = {'form': form, 'invalid_credentials': invalid_credentials }
+    return render(request, 'storage/search-location.html', context)
 
 
 @login_required
 def search_stock(request: HttpRequest) -> HttpResponse:
+    invalid_credentials = False
     if request.method == 'POST':
         form = SearchStockForm(request.POST)
         if form.is_valid():
             stock = form.cleaned_data['stock']
             parts = CarPartModel.objects.filter(car__stock=stock).order_by('part__part_id')
-            return render(request, 'storage/results.html', {'parts': parts})
+
+            if parts.exists():
+                return render(request, 'storage/results.html', {'parts': parts})
+            else:
+                invalid_credentials = True
+        else:
+            invalid_credentials = True
+
     else:
         form = SearchStockForm()
-    return render(request, 'storage/search-stock.html', {'form': form})
+    context = {'form': form, 'invalid_credentials': invalid_credentials }
+    return render(request, 'storage/search-stock.html', context)

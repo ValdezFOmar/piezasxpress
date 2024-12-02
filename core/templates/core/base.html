@@ -16,6 +16,10 @@
     href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap">
 
+  {% if invalid_credentials %}
+    <script src="{% static 'core/scripts/login-error-message.js' %}" type="module"></script>
+  {% endif %}
+
   {% block head %}
   {% comment %}
     CSS in child templates needs to appear before the media queries,
